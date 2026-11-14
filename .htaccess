@@ -1,0 +1,16 @@
+# Force HTTPS and the bare domain (kmascend.com)
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ https://kmascend.com%{REQUEST_URI} [L,R=301]
+
+AddType image/webp .webp
+DirectoryIndex index.html
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
